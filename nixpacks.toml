@@ -1,20 +1,17 @@
 [phases.setup]
-nixPkgs = ["wget", "bzip2", "git", "gcc", "g++"]
+nixPkgs = ["wget", "bzip2", "git"]
 
 [phases.install]
 cmds = [
   "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh",
   "bash /tmp/miniconda.sh -b -p /opt/conda",
-  "source /opt/conda/etc/profile.d/conda.sh",
-  "conda create -y -p /opt/conda/envs/app python=3.12",
-  "source /opt/conda/envs/app/bin/activate",
-  "conda install -y -c conda-forge spacy=3.7.6 pytz",
-  "python -m spacy download en_core_web_sm",
-  "pip install -r requirements.txt"
+  "/opt/conda/bin/conda init bash",
+  "source /root/.bashrc",
+  "/opt/conda/bin/conda create -y -n app python=3.12",
+  "/opt/conda/bin/conda run -n app --no-capture-output conda install -y -c conda-forge spacy=3.7.6 pytz",
+  "/opt/conda/bin/conda run -n app --no-capture-output python -m spacy download en_core_web_sm",
+  "/opt/conda/bin/conda run -n app --no-capture-output pip install -r requirements.txt"
 ]
 
-[phases.runtime]
-nixPkgs = ["/opt/conda/envs/app/bin/python"]
-
 [start]
-cmd = "/opt/conda/envs/app/bin/python app.py"
+cmd = "/opt/conda/bin/conda run -n app --no-capture-output python app.py"
