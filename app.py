@@ -36,6 +36,7 @@ logger = logging.getLogger("ai-twin-app")
 # ---------------------
 # NLTK & spaCy
 # ---------------------
+import nltk
 nltk.download('wordnet', quiet=True)
 nltk.download('punkt', quiet=True)
 try:
@@ -44,6 +45,11 @@ try:
 except ImportError as e:
     nlp = None
     logger.warning(f"spaCy not installed: {e}. Skipping NLP features.")
+try:
+    import pytz
+except ImportError as e:
+    logger.warning(f"pytz not installed: {e}. Skipping timezone features.")
+    pytz = None
 
 # ---------------------
 # Env & constants
