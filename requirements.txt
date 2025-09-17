@@ -3,7 +3,7 @@ uvicorn==0.32.0
 motor==3.6.0
 pydantic==2.11.9
 openai==1.40.0
-langchain-openai==0.2.0
+langchain-openai==0.1.25
 langchain-community==0.3.0
 faiss-cpu>=1.10.0
 spacy==3.7.6
