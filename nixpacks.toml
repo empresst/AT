@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python3", "git", "gcc", "g++", "make", "libopenblas"]
+nixPkgs = ["python312", "git", "gcc", "g++", "make", "libopenblas"]
 
 [phases.install]
 cmds = ["python -m venv /app/.venv", "source /app/.venv/bin/activate && pip install -r requirements.txt"]
