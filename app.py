@@ -38,7 +38,12 @@ logger = logging.getLogger("ai-twin-app")
 # ---------------------
 nltk.download('wordnet', quiet=True)
 nltk.download('punkt', quiet=True)
-nlp = spacy.load("en_core_web_sm")
+try:
+    import spacy
+    nlp = spacy.load("en_core_web_sm")
+except ImportError as e:
+    nlp = None
+    logger.warning(f"spaCy not installed: {e}. Skipping NLP features.")
 
 # ---------------------
 # Env & constants
