@@ -1,17 +1,8 @@
 [phases.setup]
-nixPkgs = ["wget", "bzip2", "git"]
+nixPkgs = ["python312", "git", "gcc", "g++", "make", "libopenblas", "python3-dev"]
 
 [phases.install]
-cmds = [
-  "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh",
-  "bash /tmp/miniconda.sh -b -p /opt/conda",
-  "/opt/conda/bin/conda init bash",
-  "source /root/.bashrc",
-  "/opt/conda/bin/conda create -y -n app python=3.12",
-  "/opt/conda/bin/conda run -n app --no-capture-output conda install -y -c conda-forge spacy=3.7.6 pytz",
-  "/opt/conda/bin/conda run -n app --no-capture-output python -m spacy download en_core_web_sm",
-  "/opt/conda/bin/conda run -n app --no-capture-output pip install -r requirements.txt"
-]
+cmds = ["python -m venv /app/.venv", "source /app/.venv/bin/activate && pip install -r requirements.txt"]
 
 [start]
-cmd = "/opt/conda/bin/conda run -n app --no-capture-output python app.py"
+cmd = "python app.py"
