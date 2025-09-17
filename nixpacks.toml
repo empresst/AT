@@ -8,7 +8,7 @@ cmds = [
   "source /opt/conda/etc/profile.d/conda.sh",
   "conda create -y -p /opt/conda/envs/app python=3.12",
   "source /opt/conda/envs/app/bin/activate",
-  "conda install -y -c conda-forge spacy=3.7.6",
+  "conda install -y -c conda-forge spacy=3.7.6 pytz",
   "python -m spacy download en_core_web_sm",
   "pip install -r requirements.txt"
 ]
